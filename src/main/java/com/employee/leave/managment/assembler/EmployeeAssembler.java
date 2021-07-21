@@ -9,8 +9,6 @@ public class EmployeeAssembler {
 
         public EmployeeDTO entityToDTO(EmployeeEntity employeeEntity)
         {
-
-
             EmployeeDTO employeeDTO = new EmployeeDTO();
             employeeDTO.setFirstName(employeeEntity.getFirstName());
             employeeDTO.setLastName(employeeEntity.getLastName());

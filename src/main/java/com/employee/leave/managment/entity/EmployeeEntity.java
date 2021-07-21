@@ -1,63 +1,71 @@
 package com.employee.leave.managment.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 
 
 @Entity
+//@NamedQueries({ @NamedQuery(name = "findemployeeByID", query = "from Employee  where Id = :Id" )})
+
 @Table(name = "employee")
 
-public class EmployeeEntity {
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "getAllEmployees",
+                query = "SELECT id, firstName, lastName,mobileNumber, salary,currentAddress,permanentAddress,aaddharNumber,bankAccountNumber,bloodGroup, emailId," +
+                        "FROM employee",
+                resultClass = EmployeeEntity.class)
+})
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
-
-    @NotBlank(message = "FirstName is mandatory")
-    String firstName;
-
-    @NotBlank(message = "LastName is mandatory")
-    String lastName;
-
-    @NotBlank(message = "MobileNumber is mandatory")
-    long mobileNumber;
-
-    //@NotBlank(message = "Salary is mandatory")
-    double salary;
-
-    @NotBlank(message = "CurrentAddress is mandatory")
-    String currentAddress;
-
-    //@NotBlank(message = "PermanentAddress is mandatory")
-    String permanentAddress;
-
-    //@NotBlank(message = "aaddhar is mandatory")
-    double aaddharNumber;
+        public class EmployeeEntity implements Serializable {
 
 
-    //@NotBlank(message = "BankAccountNo is mandatory")
-    double bankAccountNumber;
+            @Id
+            @GeneratedValue(strategy = GenerationType.AUTO)
+            int id;
 
-    //@NotBlank(message = "Bloodgroup is mandatory")
-    String bloodGroup;
+            @NotBlank(message = "FirstName is mandatory")
+            String firstName;
 
-    @NotBlank(message = "emailId is mandatory")
-    String emailId;
+            @NotBlank(message = "LastName is mandatory")
+            String lastName;
+
+            @NotBlank(message = "MobileNumber is mandatory")
+            long mobileNumber;
+
+            //@NotBlank(message = "Salary is mandatory")
+            double salary;
+
+            @NotBlank(message = "CurrentAddress is mandatory")
+            String currentAddress;
+
+            //@NotBlank(message = "PermanentAddress is mandatory")
+            String permanentAddress;
+
+            //@NotBlank(message = "aaddhar is mandatory")
+            double aaddharNumber;
 
 
-    public EmployeeEntity() {
-        super();
+            //@NotBlank(message = "BankAccountNo is mandatory")
+            double bankAccountNumber;
 
-    }
+            //@NotBlank(message = "Bloodgroup is mandatory")
+            String bloodGroup;
 
-    public EmployeeEntity(int id, String firstName, String lastName, long mobileNumber, double salary,
-                          String currentAddress, String permanentAddress, double aaddharNumber, double bankAccountNumber,
-                          String bloodGroup, String emailId) {
+            @NotBlank(message = "emailId is mandatory")
+            String emailId;
+
+
+            public EmployeeEntity(){
+            super();
+
+            }
+
+            public EmployeeEntity(int id, String firstName, String lastName, long mobileNumber, double salary,
+            String currentAddress, String permanentAddress, double aaddharNumber, double bankAccountNumber,
+            String bloodGroup, String emailId) {
         super();
         this.id = id;
         this.firstName = firstName;
@@ -167,7 +175,6 @@ public class EmployeeEntity {
                 + permanentAddress + ", aaddharNumber=" + aaddharNumber + ", bankAccountNumber=" + bankAccountNumber
                 + ", bloodGroup=" + bloodGroup + ", emailId=" + emailId + "]";
     }
-
 
 }
 

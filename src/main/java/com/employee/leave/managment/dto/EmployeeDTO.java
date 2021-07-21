@@ -1,13 +1,12 @@
 package com.employee.leave.managment.dto;
 
-import javax.validation.constraints.NotBlank;
+
 
 public class EmployeeDTO {
 
         int id;
 
         String firstName;
-
         String lastName;
         long mobileNumber;
         double salary;
